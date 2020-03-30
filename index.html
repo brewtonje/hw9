@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>COVERBAND</title>
+  <link href="https://fonts.googleapis.com/css?family=Arapey|Ultra&display=swap" rel="stylesheet">
+</head>
+<style>
+.center {
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+
+}
+body{
+  padding-left: 2%;
+  padding-right: 2%;
+  font-family: 'Arapey', serif;
+  background-color: #ffc4de;
+}
+h1 {
+  font-family: 'Ultra', serif;
+  font-weight: 50;
+  font-size: 20pt;
+  padding-left: 2%;
+
+}
+label, button, select{
+  font-size: 20pt;
+  font-family: 'Ultra', serif;
+  font-weight: 50;
+}
+button, select{
+  background-color: #adcdff;
+}
+.date{
+  font-style: italic;
+}
+</style>
+<body>
+  <div class="center">
+      <label for="options">Pick a Genre to Display:</label>
+      <select id="options">
+          <option value="Alternative">Alternative</option>
+          <option value="Dance">Dance</option>
+          <option value="Electro">Electro</option>
+          <option value="Pop">Pop</option>
+          <option value="R&B">R&B</option>
+          <option value="Rock">Rock</option>
+      </select>
+      <button onclick="getUser()">Filter</button>
+  </div>
+  <p id="displaysongs"></p>
+<div class="center">
+  <audio controls preload="metadata" style=" width:500px;">
+  	<source src="song.mp3" type="audio/mpeg">
+  	Your browser does not support the audio element.
+  </audio><br />
+</div>
+
+  <script>
+
+var user_genre;
+
+ function getUser() {
+   user_genre = document.getElementById("options");
+   user_genre = user_genre.value;
+   listFilter(user_genre);
+ }
+
+var user_genre = document.getElementById("options");
+user_genre = user_genre.value;
+
+
+var setList =
+[
+  {
+    "Title": "Habits (Stay High)",
+    "Artist": "Tove Lo",
+    "Year": 2013,
+    "Genre": [
+      "Alternative",
+      "Electro",
+    ]
+  },
+  {
+    "Title": "Blue Jeans (Remastered)",
+    "Artist": "Lana Del Rey",
+    "Year": 2011,
+    "Genre": "Pop"
+  },
+  {
+    "Title": "How to Be a Heartbreaker",
+    "Artist": "Marina and The Diamonds",
+    "Year": 2012,
+    "Genre": "Pop"
+  },
+  {
+    "Title": "Stay (feat. Mikky Ekko)",
+    "Artist": "Rihanna",
+    "Year": 2012,
+    "Genre": [
+      "Pop",
+      "R&B"
+    ]
+  },
+  {
+    "Title": "Hypnotic (Vanic Remix)",
+    "Artist": "Zella Day",
+    "Year": 2016,
+    "Genre": [
+      "Alternative",
+      "Dance"
+    ]
+  },
+  {
+    "Title": "Can't Sleep",
+    "Artist": "K.Flay",
+    "Year": 2014,
+    "Genre": [
+      "Alternative",
+      "Pop"
+    ]
+  },
+  {
+    "Title": "Lose It",
+    "Artist": "Oh Wonder",
+    "Year": 2015,
+    "Genre": [
+      "Alternative",
+      "Dance"
+    ]
+  },
+  {
+    "Title": "Riptide",
+    "Artist": "Vance Joy",
+    "Year": 2013,
+    "Genre": "Alternative"
+  },
+  {
+    "Title": "Little Talks",
+    "Artist": "Of Monsters and Men",
+    "Year": 2011,
+    "Genre": [
+      "Alternative",
+      "Rock"
+    ]
+  },
+  {
+    "Title": "It's Strange (feat. K.Flay) [Bee's Knees Remix]",
+    "Artist": "Louis The Child",
+    "Year": 2016,
+    "Genre": [
+      "Alternative",
+      "Electro"
+    ]
+  }
+
+];
+
+var output = '';
+for (var i = 0;i<setList.length;i++){
+  output += '<h1>'+setList[i].Title+'</h1>';
+  output += '<h2>'+"Artist: "+setList[i].Artist+'</h2>';
+  output += '<h3>'+"Genre: "+setList[i].Genre+'</h3>';
+  output += '<p class="date">'+"Released: "+setList[i].Year+'</p>';
+}
+
+
+function listFilter(user_genre){
+  var answer = user_genre;
+  var filtered_output = '';
+  for (var i = 0;i<setList.length;i++){
+
+    if (setList[i].Genre == answer || setList[i].Genre[1] == answer){
+      filtered_output += '<h1>'+setList[i].Title+'</h1>';
+      filtered_output += '<h2>'+"Artist: "+setList[i].Artist+'</h2>';
+      filtered_output += '<h3>'+"Genre: "+setList[i].Genre+'</h3>';
+      filtered_output += '<p class="date">'+"Released: "+setList[i].Year+'</p>';
+    }
+  }
+  document.getElementById('displaysongs').innerHTML = filtered_output;
+
+}
+
+document.getElementById('displaysongs').innerHTML = output;
+
+</script>
+
+
+
+</body>
+</html>
